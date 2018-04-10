@@ -486,7 +486,7 @@ unsigned lcd_print(char c) { return charset_mapper(c); }
     lcd.setCursor(TEXT_SCREEN_LOGO_SHIFT, 1);                    lcd_printPGM(PSTR("|Marlin|"));
     lcd.setCursor(TEXT_SCREEN_LOGO_SHIFT, 2); lcd.print('\x02'); lcd_printPGM(PSTR( "------" ));  lcd.print('\x03');
 
-    lcd_scroll(0, 3, PSTR("marlinfirmware.org"), LCD_WIDTH, 3000);
+    lcd_scroll(0, 3, PSTR("marlin firmware"), LCD_WIDTH, 3000);
 
     #ifdef STRING_SPLASH_LINE1
       lcd_erase_line(3);
@@ -617,16 +617,16 @@ static void lcd_implementation_status_screen() {
       #else
 
         lcd.print('X');
-        if (axis_known_position[X_AXIS])
+    //    if (axis_known_position[X_AXIS])
           lcd.print(ftostr4sign(current_position[X_AXIS]));
-        else
-          lcd_printPGM(PSTR(" ---"));
+     //   else
+     //     lcd_printPGM(PSTR(" ---"));
 
         lcd_printPGM(PSTR(" Y"));
-        if (axis_known_position[Y_AXIS])
+    //    if (axis_known_position[Y_AXIS])
           lcd.print(ftostr4sign(current_position[Y_AXIS]));
-        else
-          lcd_printPGM(PSTR(" ---"));
+    //    else
+    //      lcd_printPGM(PSTR(" ---"));
 
       #endif // EXTRUDERS > 1 || TEMP_SENSOR_BED != 0
 
@@ -634,10 +634,10 @@ static void lcd_implementation_status_screen() {
 
     lcd.setCursor(LCD_WIDTH - 8, 1);
     lcd_printPGM(PSTR("Z "));
-    if (axis_known_position[Z_AXIS])
+ //   if (axis_known_position[Z_AXIS])
       lcd.print(ftostr32sp(current_position[Z_AXIS] + 0.00001));
-    else
-      lcd_printPGM(PSTR("---.--"));
+  //  else
+ //     lcd_printPGM(PSTR("---.--"));
 
   #endif // LCD_HEIGHT > 2
 

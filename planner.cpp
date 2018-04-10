@@ -84,6 +84,12 @@ unsigned long axis_steps_per_sqr_second[NUM_AXIS];
     0.0, 1.0, 0.0,
     0.0, 0.0, 1.0
   };
+  matrix_3x3 backup_plan_bed_level_matrix = {
+    1.0, 0.0, 0.0,
+    0.0, 1.0, 0.0,
+    0.0, 0.0, 1.0
+  };
+  uint8_t need_restore = 0;
 #endif // AUTO_BED_LEVELING_FEATURE
 
 #if ENABLED(AUTOTEMP)

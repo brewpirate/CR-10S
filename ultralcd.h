@@ -33,7 +33,8 @@
   #define LCD_ALERTMESSAGEPGM(x) lcd_setalertstatuspgm(PSTR(x))
 
   #define LCD_UPDATE_INTERVAL 100
-  #define LCD_TIMEOUT_TO_STATUS 15000
+  #define LCD_TIMEOUT_TO_STATUS 120000
+  #define led_off_time 180000
 
   #if ENABLED(ULTIPANEL)
     void lcd_buttons_update();
@@ -86,6 +87,10 @@
       #define REPRAPWORLD_KEYPAD_MOVE_Y_DOWN (buttons_reprapworld_keypad&EN_REPRAPWORLD_KEYPAD_DOWN)
       #define REPRAPWORLD_KEYPAD_MOVE_Y_UP (buttons_reprapworld_keypad&EN_REPRAPWORLD_KEYPAD_UP)
       #define REPRAPWORLD_KEYPAD_MOVE_HOME (buttons_reprapworld_keypad&EN_REPRAPWORLD_KEYPAD_MIDDLE)
+
+      #define MIDDLE_BUTTON (buttons_reprapworld_keypad&EN_REPRAPWORLD_KEYPAD_MIDDLE)
+
+      
     #endif //REPRAPWORLD_KEYPAD
   #else
     //atomic, do not change

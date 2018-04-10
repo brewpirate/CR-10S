@@ -462,13 +462,13 @@ inline void _temp_error(int e, const char* serial_msg, const char* lcd_msg) {
     if (e >= 0) SERIAL_ERRORLN((int)e); else SERIAL_ERRORLNPGM(MSG_HEATER_BED);
   }
   #if DISABLED(BOGUS_TEMPERATURE_FAILSAFE_OVERRIDE)
-    if (!killed) {
-      Running = false;
-      killed = true;
-      kill(lcd_msg);
+    if (!killed) {	//���������¶ȣ��رչ̼� translation: Generates an error temperature and turns off the firmware
+ //     Running = false;
+ //     killed = true;
+ //     kill(lcd_msg);	//�ر���ʾ translation: Close the display
     }
     else
-      disable_all_heaters(); // paranoia
+      disable_all_heaters(); // paranoia ��ֹ���еļ��� translation: All heating is forbidden
   #endif
 }
 
