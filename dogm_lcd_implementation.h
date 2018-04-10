@@ -330,7 +330,7 @@ static void lcd_implementation_status_screen() {
       lcd_print(':');
       lcd_print(itostr2(time%60));
 
-	  //多少百分比
+	  //多少百分比 translation: What percentage
 	  uint16_t progresssum=card.percentDone();
 	  u8g.setPrintPos(104,51);
 		u8g.print(itostr3(progresssum));
@@ -339,7 +339,7 @@ static void lcd_implementation_status_screen() {
     else {
       lcd_printPGM(PSTR("--:--"));
 
-	  //打印进度百分比
+	  //打印进度百分比 translation: Print progress percentage
 	 u8g.setPrintPos(104,51);
 	 u8g.print(itostr3(0));
 	 u8g.print('%');

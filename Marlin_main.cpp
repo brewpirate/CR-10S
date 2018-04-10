@@ -668,11 +668,11 @@ void init_power_off_info () {
 			card.openPowerOffFile(power_off_info.power_off_filename, O_READ);
 			card.getPowerOffInfo(&power_off_info, sizeof(power_off_info));
 			card.closePowerOffFile();
-      //card.removePowerOffFile();   
+      //card.removePowerOffFile();
 			SERIAL_PROTOCOLLN("init valid: ");
 			SERIAL_PROTOCOLLN((unsigned long)power_off_info.valid_head);
       SERIAL_PROTOCOLLN((unsigned long)power_off_info.valid_foot);
-      if ((power_off_info.valid_head != 0) && (power_off_info.valid_head == power_off_info.valid_foot)) { 
+      if ((power_off_info.valid_head != 0) && (power_off_info.valid_head == power_off_info.valid_foot)) {
   			/* --------------------------------------------------------------------- */
   			enable_z();
         SERIAL_PROTOCOLLN("current_position(X,Y,Z,E,F,T1..T4,B): ");
@@ -775,12 +775,12 @@ void save_power_off_info () {
   //static millis_t cur_time = millis();
 	if (card.cardOK && card.sdprinting) {
     //cur_time = millis();
-		if ( 
+		if (
       #if ENABLED(SAVE_EACH_CMD_MODE)
       (true)
       #else
       ((current_position[2] > 0) && (power_off_info.saved_z != current_position[2]))
-      #endif 
+      #endif
         //|| ((cur_time - pre_time) > SAVE_INFO_INTERVAL)
       ) {
       //pre_time = cur_time;
@@ -824,7 +824,7 @@ void save_power_off_info () {
 			//SERIAL_PROTOCOLLN("sd file(start_time,file_name,sd_pos): ");
       power_off_info.print_job_start_ms = print_job_start_ms;
       //SERIAL_PROTOCOLLN(power_off_info.print_job_start_ms);
-      //strcpy(power_off_info.sd_filename, 
+      //strcpy(power_off_info.sd_filename,
       card.getAbsFilename(power_off_info.sd_filename);
       //SERIAL_PROTOCOLLN(power_off_info.sd_filename);
 			power_off_info.sdpos = card.getIndex();
@@ -838,7 +838,7 @@ void save_power_off_info () {
 	}
 }
 #endif
- 
+
 void setup() {
   pinMode(IN_PUT,INPUT);
   pinMode(OUT_PUT,OUTPUT);
@@ -846,10 +846,10 @@ void setup() {
   WRITE(OUT_PUT,LOW);
 
   attachInterrupt(zhongduan,statechange,FALLING);
- 
+
   pinMode(LED,OUTPUT);
   digitalWrite(LED,LOW);
-  
+
   setup_killpin();
   setup_filrunoutpin();
   setup_powerhold();
@@ -940,25 +940,25 @@ void setup() {
     pinMode(STAT_LED_BLUE, OUTPUT);
     digitalWrite(STAT_LED_BLUE, LOW); // turn it off
   #endif
-	//设置检测材料的引脚
+	//设置检测材料的引脚 translation: Set the pin for the test material
 	pinMode(CHECK_MATWEIAL, INPUT);
     digitalWrite(CHECK_MATWEIAL, HIGH); // turn it off
 
-	//设置检测材料的引脚
+	//设置检测材料的引脚 translation: Set the pin for the test material
 //	pinMode(65, OUTPUT);
 //    digitalWrite(65, LOW); // turn it off
 
-	//设置电源开关引脚
+	//设置电源开关引脚 translation: Set the power switch pin
 /*	pinMode(IN_PUT, INPUT);
     digitalWrite(IN_PUT, HIGH); // turn it off
-	//设置电源开关引脚
+	//设置电源开关引脚 translation: Set the power switch pin
 	pinMode(OUT_PUT, OUTPUT);
    digitalWrite(OUT_PUT, LOW); // turn it off*/
   #if ENABLED(SDSUPPORT) && ENABLED(POWEROFF_SAVE_SD_FILE)
    init_power_off_info();
   #endif
 
-  
+
 }
 
 /**
@@ -1163,7 +1163,7 @@ void get_command() {
     if (!card.sdprinting || serial_count) return;
 
     #if ENABLED(SDSUPPORT) && ENABLED(POWEROFF_SAVE_SD_FILE)
-    /* 优先读取断电保存的命令。 */
+    /* 优先读取断电保存的命令。 translation: Priority reads the power-off saved command.*/
     if (drain_power_off_commands()) return;
     #endif
 
@@ -4423,9 +4423,9 @@ inline void gcode_M81() {
   finishAndDisableSteppers();
   fanSpeed = 0;
   delay(1000); // Wait 1 second before switching off
-  
 
-  WRITE(OUT_PUT,HIGH);  //关闭电源
+
+  WRITE(OUT_PUT,HIGH);  //关闭电源 translation: Turn off the power
   delay(1000);
 
   #if HAS_SUICIDE
@@ -7469,4 +7469,3 @@ void calculate_volumetric_multipliers() {
   for (int i = 0; i < EXTRUDERS; i++)
     volumetric_multiplier[i] = calculate_volumetric_multiplier(filament_size[i]);
 }
-
